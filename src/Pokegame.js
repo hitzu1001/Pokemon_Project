@@ -20,6 +20,11 @@ class Pokegame extends Component {
     ]
   };
 
+  // no arrow for reduce
+  totalExp(totalExp, pokemonObj) {
+      return totalExp + pokemonObj.base_exp;
+  }
+
   render() {
     let total = [ ...this.props.pokemon ];
     let hand1 = [];
@@ -35,8 +40,12 @@ class Pokegame extends Component {
     //   let randPokemon = hand2.splice(randIdx, 1)[0];
     //   hand1.push(randPokemon);
     // }
-    let exp1 = hand1.reduce((exp, pokemon) => exp + pokemon.base_exp, 0);
-    let exp2 = hand2.reduce((exp, pokemon) => exp + pokemon.base_exp, 0);
+
+    // let exp1 = hand1.reduce((exp, pokemon) => exp + pokemon.base_exp, 0);
+    // let exp2 = hand2.reduce((exp, pokemon) => exp + pokemon.base_exp, 0);
+    let exp1 = hand1.reduce(this.totalExp, 0);
+    let exp2 = hand2.reduce(this.totalExp, 0);
+    
 
     return (
       <div>
